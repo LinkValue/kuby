@@ -1,6 +1,5 @@
-import AbstractCommand from "./AbstractCommand"
+import AbstractCommand from "../Command/AbstractCommand"
 import * as shell from "shelljs";
-import Config from "./utils/Config"
 
 class Start extends AbstractCommand {
 

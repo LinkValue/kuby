@@ -1,11 +1,11 @@
 let vorpal = require('vorpal')();
 import vorpalDefault from 'vorpal-as-default';
-import Init from './command/Init';
-import Start from './command/Start';
-import Stop from './command/Stop';
-import Delete from './command/Delete';
-import Destroy from './command/Destroy';
-import Hosts from './command/Hosts';
+import Init from './Kube/Init';
+import Start from './Kube/Start';
+import Stop from './Kube/Stop';
+import Delete from './Kube/Delete';
+import Destroy from './Kube/Destroy';
+import Hosts from './Kube/Hosts';
 let argv = process.argv
 
 vorpal.delimiter('minik8s$');
