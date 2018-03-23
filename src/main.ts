@@ -1,22 +1,35 @@
 let vorpal = require('vorpal')();
 import vorpalDefault from 'vorpal-as-default';
-import Init from './command/Init';
-import Start from './command/Start';
-import Stop from './command/Stop';
-import Delete from './command/Delete';
-import Destroy from './command/Destroy';
-import Hosts from './command/Hosts';
+import CheckSystem from './Default/CheckSystem'
+import * as shell from "shelljs";
 let argv = process.argv
 
-vorpal.delimiter('minik8s$');
+CheckSystem.execute();
+
+vorpal.delimiter('kuby$');
 
 vorpal
-  .use(function(vorpal: any) { new Init(vorpal); })
-  .use(function(vorpal: any) { new Start(vorpal) })
-  .use(function(vorpal: any) { new Stop(vorpal); })
-  .use(function(vorpal: any) { new Delete(vorpal); })
-  .use(function(vorpal: any) { new Destroy(vorpal); })
-  .use(function(vorpal: any) { new Hosts(vorpal); })
+    .command('minikube')
+    .option('-v, --verbose', 'Print foobar instead.')
+    .description('Outputs "bar".')
+    .alias('minikube')
+    .action(function(args, callback) {
+      console.log(args);
+        if (!args.optionalArg) {
+          args.optionalArg = "help";
+        }
+        shell.exec("node src/Kube/main.js " + args.optionalArg);
+    });
+
+vorpal
+  .command('helm <requiredArg> [optionalArg]')
+  .option('-v, --verbose', 'Print foobar instead.')
+  .description('Outputs "bar".')
+  .alias('helm')
+  .action(function(args, callback) {
+
+    callback();
+  });
 
 // To print help command if no command args. Don't want interactive one.
 if (argv.length == 2) {

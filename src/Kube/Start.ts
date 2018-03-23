@@ -1,6 +1,5 @@
-import AbstractCommand from "./AbstractCommand"
+import AbstractCommand from "../Command/AbstractCommand"
 import * as shell from "shelljs";
-import Config from "./utils/Config"
 
 class Start extends AbstractCommand {
 
@@ -15,11 +14,10 @@ class Start extends AbstractCommand {
 
   }
 
-  action(): any {
-    return function () {
-      shell.exec("echo Start your minikube")
+  action(args, callback): any {
+      console.log("test");
+      shell.echo("Start your minikube")
       // shell.exec("minikube start")
-    }
   }
 }
 

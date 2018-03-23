@@ -15,8 +15,9 @@ abstract class AbstractCommand {
 
   init() {}
 
-  action(): any {
-      return function () {}
+  action(args, callback): any {
+      return function () {
+      }
   }
 
   command(): string[]  {
@@ -25,7 +26,9 @@ abstract class AbstractCommand {
 
   vorpalDefinition(vorpal: any):void {
       vorpal.command(...this.command())
-          .action(this.action());
+          .action(function(args, callback) {
+            this.action(args, callback);
+          }.bind(this));
   };
 }
 
